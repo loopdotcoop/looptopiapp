@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Looptopia</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A cube-shaped planet in the Loop.Coop system">
+
+  <!-- Usage: `LERT("Some alert message here!")` -->
+  <script>!function(s){var A='addEventListener',L='LERT',S='setAttribute',t=top,
+  w=this,d=document,u=navigator.userAgent,n=0,p,i,c,e=function(m,f,l){if(l!=+l)l
+  =m.lineno,f=m.filename,m=m.message;for(i=0,c=w;c=c[['LIFE','pop','is','ready']
+  [i++]];);(4<i&&w.LIFE.pop.warn||t[L])((f+':'+l).match(/[^\/]+?\/?[^\/]+$/)[0]+
+  '\n'+m)};/efox\/(\d|[1-2]\d)\.|Prest/.test(u)?w.onerror=e:!/SIE 9/.test(u)&&w[
+  A]?w[A]('error',e,0):w.attachEvent('onerror',e);w[L]=t[L]=t[L]||function(h){h=
+  98<++n?'99!':n+' '+h;99<n?0:d.body?(p=d.createElement('TT'),p.innerHTML=h,(p.
+  style[S]?p.style[S]('cssText',s):p[S]('style',s)),p.onclick=function(){d.body.
+  removeChild(this)},d.body.appendChild(p)):alert(h)}}('position:fixed!importa'+
+  'nt;position:absolute;display:block;top:40%;left:5%;width:90%;font-size:14px'+
+  ';padding:9px;margin-left:-9px;background:tan;color:#033;z-index:99')</script>
+
+  <link href="asset/index.css" rel="stylesheet">
+
+</head>
+<body>
+
+  <!-- Upgrade message for Internet Explorer 9 and below -->  <!--[if lte IE 9]>
+  <h2>Upgrade to a <a href="//goo.gl/KpAuN1">modern browser<a/></h2><![endif]-->
+  <!-- Begin hiding from IE 9 and below -->        <!--[if gt IE 9 | !IE ]><!-->
+  <script>if(/Trident\//.test(navigator.userAgent))document.write('<h2>Upgrade '
+  +'to a <a href="//goo.gl/KpAuN1">modern browser<a/></h2><!--')//IE10+</script>
+
+  <h1>Looptopia</h1>
+  <h2>A cube-shaped planet in the Loop.Coop system</h2>
+  <ul>
+    <li><a href="http://loop.coop/" target="_blank">Loop.Coop</a></li>
+    <li><a href="https://vimeo.com/109925133" target="_blank">The Looptopian Launch</a></li>
+    <li><a href="https://github.com/loopdotcoop/looptopiapp" target="_blank">GitHub</a></li>
+  </ul>
+
+  <section>
+    <pre></pre>
+    <input></input>
+  <section>
+
+
+
+
+  <!-- Simple console and logging -->
+  <script>!function (ROOT) { 'use strict'
+var $log = document.querySelector('pre')
+var $in  = document.querySelector('input')
+var logs = Array(6)
+$in.focus()
+
+ROOT.log = function log (m) {
+    logs.shift()
+    logs.push(m)
+    $log.innerHTML = logs.join('\n')
+}
+log(navigator.userAgent)
+
+ROOT.clear = function () {
+    logs = Array(6)
+    log()
+}
+
+ROOT.submit = function (m) {
+    $in.value = m
+    onSubmit()
+}
+
+$in.addEventListener('keypress', function (e) { //stackoverflow.com/a/11365682
+    e = e || window.event //stackoverflow.com/a/15537051
+    var keyCode = e.keyCode || e.which
+    if (13 == keyCode) onSubmit()
+})
+
+function onSubmit () {
+    log('<i>' + $in.value + '</i>')
+    ROOT.run($in.value)
+    $in.value = ''
+}
+  }(this)</script>
+
+
+
+
+  <!-- Basic command runner -->
+  <script>!function (ROOT) { 'use strict'
+const actions = {
+    clear: args => ROOT.clear()
+}
+
+
+ROOT.run = function (command) {
+    command = command.trim().split(' ') //@TODO allow doublespaces
+    const action = command.pop()
+    if (! actions[action])
+        log(`<b>${action}</b> not recognised`)
+    else
+        log( actions[action](command) )
+}
+  }(this)</script>
+
+
+
+
+</body>
+</html>

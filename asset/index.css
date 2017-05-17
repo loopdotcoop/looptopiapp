@@ -1,0 +1,55 @@
+/*
+//// LIFE //// 0.0.* //// May 2017 //// github.com/loopdotcoop/life //////////
+*/
+
+/* UNIVERSAL */
+html {
+    background: #fec;
+    color:      #433;
+    font: 125% Arial, serif; /* 1rem = 20px */
+}
+
+section {
+    text-align: center;
+}
+
+pre,
+input {
+    display:       inline-block;
+    box-sizing:    border-box;
+    white-space:   pre-wrap;
+    width:         100%;
+    margin:        0.2em 0;
+    padding:       1em;
+    border-width:  0;
+    border-radius: 0.3em;
+    background:    #433;
+    color:         #fec;
+    text-align:    left;
+    font: 20px/24px monospace;
+}
+pre {
+}
+pre i,
+input {
+    color:         #cff;
+}
+pre b {
+    color:         #ece;
+    font-weight:   normal;
+}
+
+nav .button {
+    display:       inline-block;
+    padding:       0.2em 0.7em;
+    margin:        0.1em;
+    border-radius: 0.2em;
+    background:    #433;
+    color:         #fec;
+    cursor:        pointer;
+    transition:    background 0.3s;
+}
+nav .button:hover {
+    background:    #644;
+    color:         #ffd;
+}

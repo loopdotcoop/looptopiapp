@@ -1,0 +1,24 @@
+<head>
+  <title>Looptopia</title>
+</head>
+
+<body>
+  <h1>Welcome to Looptopia</h1>
+
+  {{> hello}}
+  {{> info}}
+</body>
+
+<template name="hello">
+  <button>Click Me</button>
+  <p>You've pressed the button {{counter}} times.</p>
+</template>
+
+<template name="info">
+  <h2>A cube-shaped planet in the Loop.Coop system</h2>
+  <ul>
+    <li><a href="http://loop.coop/" target="_blank">Loop.Coop</a></li>
+    <li><a href="https://vimeo.com/109925133" target="_blank">The Looptopian Launch</a></li>
+    <li><a href="https://github.com/loopdotcoop/looptopiapp" target="_blank">GitHub</a></li>
+  </ul>
+</template>
