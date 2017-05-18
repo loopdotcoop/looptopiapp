@@ -1,10 +1,10 @@
 import angular from 'angular'
 import angularMeteor from 'angular-meteor'
 import usersList from '../imports/components/usersList/usersList'
-import looptopiansList from '../imports/components/looptopiansList/looptopiansList'
+import listablesList from '../imports/components/listablesList/listablesList'
 
 angular.module('looptopiapp', [
   angularMeteor,
   usersList.name,
-  looptopiansList.name
+  listablesList.name
 ])

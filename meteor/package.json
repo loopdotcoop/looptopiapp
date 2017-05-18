@@ -1,6 +1,6 @@
 {
   "name": "looptopiapp",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "A cube-shaped planet in the Loop.Coop system",
   "scripts": {
     "start": "meteor run"
