@@ -9,7 +9,9 @@ class ItemsListCtrl {
         $scope.viewModel(this)
         this.helpers({
             items() {
-                return Items.find({})
+                return Items.find({}, {
+                    sort: { createdAt: -1 } // newest first
+                })
             }
         })
     }
@@ -21,6 +23,20 @@ class ItemsListCtrl {
             createdAt: new Date
         })
         this.newItem = '' // clear the form
+    }
+
+    //// Removes an item from the collection.
+    removeItem(item) {
+        Items.remove(item._id)
+    }
+
+    //// Set the `checked` property to the opposite of its current value.
+    setChecked(item) {
+        Items.update(item._id, {
+            $set: {
+                checked: ! item.checked
+            }
+        })
     }
 
 }

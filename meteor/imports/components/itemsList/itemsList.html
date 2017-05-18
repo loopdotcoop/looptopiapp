@@ -6,7 +6,11 @@
 </header>
 
 <ul>
-  <li ng-repeat="listable in $ctrl.items">
-    {{listable.text}}
+  <li ng-repeat="item in $ctrl.items" ng-class="{'checked': item.checked}">
+    <button class="delete" ng-click="$ctrl.removeItem(item)">&times;</button>
+    <input type="checkbox" ng-checked="item.checked" ng-click="$ctrl.setChecked(item)" class="toggle-checked">
+    <span class="text">
+      {{item.text}}
+    </span>
   </li>
 </ul>
