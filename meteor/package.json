@@ -1,6 +1,6 @@
 {
   "name": "looptopiapp",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "A cube-shaped planet in the Loop.Coop system",
   "scripts": {
     "start": "meteor run"
@@ -9,6 +9,7 @@
     "angular": "^1.6.4",
     "angular-meteor": "^1.3.12",
     "babel-runtime": "^6.20.0",
+    "bcrypt": "^1.0.2",
     "meteor-node-stubs": "~0.2.4"
   },
   "repository": {

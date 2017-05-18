@@ -1,5 +1,6 @@
 import angular from 'angular'
 import angularMeteor from 'angular-meteor'
+import { Meteor } from 'meteor/meteor'
 import { Items } from '../../api/items.js'
 
 import template from './itemsList.html'
@@ -33,6 +34,10 @@ class ItemsListCtrl {
                         $eq: true
                     }
                 }).count()
+            },
+
+            currentUser() {
+                return Meteor.user()
             }
 
         })
@@ -41,8 +46,10 @@ class ItemsListCtrl {
     //// Inserts a new item into the collection.
     addItem(newItem) {
         Items.insert({
-            text:      newItem,
-            createdAt: new Date
+            text: newItem,
+            createdAt: new Date,
+            owner: Meteor.userId(),
+            username: Meteor.user().username
         })
         this.newItem = '' // clear the form
     }
