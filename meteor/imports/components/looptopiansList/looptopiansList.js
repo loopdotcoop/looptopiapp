@@ -1,16 +1,17 @@
 import angular from 'angular'
 import angularMeteor from 'angular-meteor'
+import { Looptopians } from '../../api/looptopians.js'
+
 import template from './looptopiansList.html'
 
 class LooptopiansListCtrl {
-    constructor() {
-        this.looptopians = [{
-            text: 'This is looptopian 1'
-        }, {
-            text: 'This is looptopian 2'
-        }, {
-            text: 'This is looptopian 3'
-        }];
+    constructor ($scope) {
+        $scope.viewModel(this)
+        this.helpers({
+            looptopians() {
+                return Looptopians.find({})
+            }
+        })
     }
 }
 
@@ -19,5 +20,5 @@ export default angular.module('looptopiansList', [
 ])
     .component('looptopiansList', {
         templateUrl: 'imports/components/looptopiansList/looptopiansList.html',
-        controller:  LooptopiansListCtrl
+        controller:  [ '$scope', LooptopiansListCtrl ]
     })
