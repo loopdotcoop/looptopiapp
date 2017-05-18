@@ -4,42 +4,147 @@
 
 /* UNIVERSAL */
 html {
-    background: #fec;
-    color:      #433;
-    font: 125% Arial, serif; /* 1rem = 20px */
+    background-color: #315481;
+    background-image: linear-gradient(to bottom, #315481, #918e82 100%);
+    background-attachment: fixed;
+    color: #eee;
+    font: 125% Arial, sans-serif; /* 1rem = 20px */
 }
 
-section {
-    text-align: center;
+
+/* HEADER */
+h1 {
+    position: absolute;
+    margin-top: -0.2em;
+}
+h2 {
+    display: none;
+}
+nav {
+    position: absolute;
+    right: 0.3em;
+    margin-top: 0;
+}
+nav ul {
+    margin: 0;
+}
+nav li {
+    display: inline-block;
+    padding: 0 0.2em;
+    list-style: none;
+}
+nav a {
+    padding: 0.2em;
+    color: #eee;
+    outline: none; /* firefox */
+    text-decoration: none;
+    transition: color 0.3s;
+}
+nav a:hover {
+    color: #f06;
 }
 
-pre,
-input {
-    display:       inline-block;
-    box-sizing:    border-box;
-    white-space:   pre-wrap;
-    width:         100%;
-    margin:        0.2em 0;
-    padding:       1em;
-    border-width:  0;
+
+/* CLI */
+#cli {
+    position: absolute;
+    display: table;
+    box-sizing: border-box;
+    padding: 0 0.5em;
+    left: 0;
+    bottom: 0;
+    width: 2.25em;
+    opacity: 0.5;
+    cursor: pointer;
+    transition: opacity 0.7s, width 0.3s;
+}
+#cli:hover {
+    opacity: 0.7;
+}
+body.show-cli #cli {
+    width: 100%;
+    opacity: 0.85;
+}
+
+#cli::after {
+    content: '§';
+    position: absolute;
+    left: 1em;
+    bottom: 1.2em;
+    font-size: 1.25em;
+    color: #fec;
+    z-index: 1;
+}
+body.show-cli #cli::after {
+}
+
+#cli >div {
+    display: table-cell;
+    vertical-align: bottom;
+}
+#cli >div >div {
+    width: 100%;
+    height: auto;
+    max-height: 3.5em;
+    overflow: hidden;
+    transition: max-height 0.3s;
+}
+body.show-cli #cli >div >div {
+    max-height: 20em;
+    opacity: 0.85;
+    cursor: inherit;
+}
+
+#cli pre,
+#cli input {
+    box-sizing: border-box;
+    white-space: pre-line;
+    left: 0;
+    width: 2.25em;
+    border-width: 0;
     border-radius: 0.3em;
-    background:    #433;
-    color:         #fec;
-    text-align:    left;
+    background: #433;
+    color: #fec;
+    text-align: left;
     font: 20px/24px monospace;
+    transition: width 0.3s;
 }
-pre {
+body.show-cli #cli pre,
+body.show-cli #cli input {
+    width: 100%;
 }
-pre i,
-input {
+#cli pre {
+    padding: 1em;
+    bottom: 0em;
+    margin: 0;
+}
+#cli input {
+    padding: 1em 1em 1em 2em;
+    bottom: 0.5em;
+    margin: 0.5em 0;
+}
+#cli input:focus {
+    outline: none;
+}
+#cli pre >* {
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+body.show-cli #cli pre >* {
+    opacity: 1;
+}
+#cli pre i,
+#cli input {
     color:         #cff;
 }
-pre b {
+#cli pre b {
     color:         #ece;
     font-weight:   normal;
 }
 
-nav .button {
+
+/* BUTTON */
+.button {
     display:       inline-block;
     padding:       0.2em 0.7em;
     margin:        0.1em;
@@ -49,7 +154,19 @@ nav .button {
     cursor:        pointer;
     transition:    background 0.3s;
 }
-nav .button:hover {
+.button:hover {
     background:    #644;
     color:         #ffd;
+}
+
+
+/* IFRAME */
+iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    z-index: -1;
 }

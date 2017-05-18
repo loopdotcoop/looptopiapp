@@ -32,31 +32,38 @@
 
   <h1>Looptopia</h1>
   <h2>A cube-shaped planet in the Loop.Coop system</h2>
-  <ul>
-    <li><a href="http://loop.coop/" target="_blank">Loop.Coop</a></li>
-    <li><a href="https://vimeo.com/109925133" target="_blank">The Looptopian Launch</a></li>
-    <li><a href="https://github.com/loopdotcoop/looptopiapp" target="_blank">GitHub</a></li>
-  </ul>
+  <nav>
+    <ul>
+      <li><a href="https://vimeo.com/109925133" target="_blank">Looptopian Launch</a></li>
+      <li><a href="https://github.com/loopdotcoop/looptopiapp" target="_blank">GitHub</a></li>
+      <li><a href="http://loop.coop/" target="_blank">Loop.Coop</a></li>
+    </ul>
+  </nav>
 
-  <section>
+  <!-- <iframe src="http://localhost:3000/" allowTransparency="true"></iframe> -->
+  <iframe src="http://46.101.56.107/" allowTransparency="true"></iframe>
+
+  <!-- CLI -->
+  <section id="cli"><div><div>
     <pre></pre>
     <input></input>
-  <section>
+  </div></div></section>
 
 
 
 
   <!-- Simple console and logging -->
   <script>!function (ROOT) { 'use strict'
+var $cli = document.querySelector('#cli')
 var $log = document.querySelector('pre')
 var $in  = document.querySelector('input')
 var logs = Array(6)
-$in.focus()
 
 ROOT.log = function log (m) {
+    m = null == m ? '' : m
     logs.shift()
-    logs.push(m)
-    $log.innerHTML = logs.join('\n')
+    logs.push('<tt>' + m + '</tt>')
+    $log.innerHTML = logs.join('<br>')
 }
 log(navigator.userAgent)
 
@@ -70,17 +77,39 @@ ROOT.submit = function (m) {
     onSubmit()
 }
 
-$in.addEventListener('keypress', function (e) { //stackoverflow.com/a/11365682
-    e = e || window.event //stackoverflow.com/a/15537051
-    var keyCode = e.keyCode || e.which
-    if (13 == keyCode) onSubmit()
-})
-
 function onSubmit () {
     log('<i>' + $in.value + '</i>')
     ROOT.run($in.value)
     $in.value = ''
 }
+
+window.addEventListener('keypress', function (e) {
+    e = e || window.event
+    console.log(e);
+    if ('§' !== e.key && 167 !== e.charCode) return
+    e.preventDefault()
+    document.body.classList.toggle('show-cli')
+    if ( document.body.classList.contains('show-cli') ) {
+        $in.addEventListener('keypress', onInKeypress)
+        $in.focus()
+    } else {
+        $in.removeEventListener('keypress', onInKeypress)
+        $in.blur()
+    }
+})
+$cli.addEventListener('click', function (e) {
+    if ( document.body.classList.contains('show-cli') ) return
+    document.body.classList.add('show-cli')
+    $in.addEventListener('keypress', onInKeypress)
+    $in.focus()
+})
+
+function onInKeypress (e) { //stackoverflow.com/a/11365682
+    e = e || window.event //stackoverflow.com/a/15537051
+    var keyCode = e.keyCode || e.which
+    if (13 == keyCode) onSubmit()
+}
+
   }(this)</script>
 
 
@@ -88,14 +117,14 @@ function onSubmit () {
 
   <!-- Basic command runner -->
   <script>!function (ROOT) { 'use strict'
-const actions = {
-    clear: args => ROOT.clear()
+var actions = {
+    clear: function (args) { return ROOT.clear() }
 }
 
 
 ROOT.run = function (command) {
     command = command.trim().split(' ') //@TODO allow doublespaces
-    const action = command.pop()
+    var action = command.shift()
     if (! actions[action])
         log(`<b>${action}</b> not recognised`)
     else
