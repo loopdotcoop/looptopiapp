@@ -15,9 +15,9 @@ class UsersListCtrl {
 }
 
 export default angular.module('usersList', [
-    angularMeteor
-])
-    .component('usersList', {
+        angularMeteor
+    ]).component('usersList', {
         templateUrl: 'imports/components/usersList/usersList.html',
         controller:  UsersListCtrl
-    })
+    }
+)
