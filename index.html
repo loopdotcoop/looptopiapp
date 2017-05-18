@@ -85,7 +85,6 @@ function onSubmit () {
 
 window.addEventListener('keypress', function (e) {
     e = e || window.event
-    console.log(e);
     if ('§' !== e.key && 167 !== e.charCode) return
     e.preventDefault()
     document.body.classList.toggle('show-cli')

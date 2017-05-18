@@ -98,11 +98,11 @@ li .text {
     margin-left: 10px;
 }
 
-li.checked {
+li.locked {
     color: #888;
 }
 
-li.checked .text {
+li.locked .text {
     text-decoration: line-through;
 }
 

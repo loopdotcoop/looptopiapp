@@ -7,12 +7,34 @@ import template from './itemsList.html'
 class ItemsListCtrl {
     constructor ($scope) {
         $scope.viewModel(this)
+
+        this.hideLocked = false
+
         this.helpers({
+
             items() {
-                return Items.find({}, {
+                const selector = {}
+
+                // If ‘Hide 77 Locked’ is checked, filter tasks.
+                if (this.getReactively('hideLocked')) {
+                    selector.locked = {
+                        $ne: true
+                    }
+                }
+
+                return Items.find(selector, {
                     sort: { createdAt: -1 } // newest first
                 })
+            },
+
+            lockedCount() {
+                return Items.find({
+                    locked: {
+                        $eq: true
+                    }
+                }).count()
             }
+
         })
     }
 
@@ -30,11 +52,11 @@ class ItemsListCtrl {
         Items.remove(item._id)
     }
 
-    //// Set the `checked` property to the opposite of its current value.
-    setChecked(item) {
+    //// Set the `locked` property to the opposite of its current value.
+    toggleLocked(item) {
         Items.update(item._id, {
             $set: {
-                checked: ! item.checked
+                locked: ! item.locked
             }
         })
     }
